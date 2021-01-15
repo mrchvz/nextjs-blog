@@ -11,6 +11,7 @@ export async function getStaticProps() {
     uri: 'https://api.spacex.land/graphql/',
     cache: new InMemoryCache()
   });
+
   const allPostsData = getSortedPostsData()
   const { data } = await client.query({
     query: gql`
@@ -36,14 +37,12 @@ export async function getStaticProps() {
   });
   return {
     props: {
-      allPostsData,
       launches: data.launchesPast
     }
   }
 }
 
-export default function Home({ allPostsData, launches }) {
-  console.log(allPostsData)
+export default function Home({ launches }) {
   console.log(launches)
   return (
     <Layout home>
@@ -51,21 +50,18 @@ export default function Home({ allPostsData, launches }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-      <Link href={`/launches`}>
-        <a>🚀‍</a>
-      </Link>
+        <p>🚀‍👨🏻‍🚀</p>
       </section>
+
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <h2 className={utilStyles.headingLg}>Launches</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {launches.map(({ id, mission_name, launch_date_local }) => (
             <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
+              <a>{mission_name}</a>
               <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={date} />
+                <Date dateString={launch_date_local} />
               </small>
             </li>
           ))}

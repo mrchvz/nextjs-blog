@@ -1,0 +1,34 @@
+CREATE Next.js app
+$ npx create-next-app nextjs-blog --use-npm --example "https://github.com/vercel/next-learn-starter/tree/master/learn-starter"
+$ cd nextjs-blog
+$ npm run dev
+
+------------------------------
+
+LINK <link> (between pages on app)
+$ import Link from 'next/link'
+<Link href="/">
+  <a>Home</a>
+</Link>
+
+------------------------------
+
+PAGES
+Pages directory
+
+------------------------------
+
+CSS
+
+
+
+
+
+
+
+
+------------------------------
+
+NOTES
+[1] Components: first letter uppercase.
+[2] Components: Has to be linked on pages
